@@ -27,6 +27,7 @@ html {
 
 body {
   color: var(--white-color);
+  background: var(--bg-color);
 }
 
 .bars-animation {
@@ -34,16 +35,26 @@ body {
   width: 100%;
   height: 100%;
   display: flex;
-  z-index: -1;
+  z-index: 11;
 }
 
 .bars-animation .bar {
   width: 100%;
   height: 100%;
-  background: #1f242d;
+  background: var(--second-bg-color);
   transform: translateY(-100%);
-  animation: show-bars 0.5s ease-in-out forwards;
-  animation-delay: calc(0.1s * var(--i));
+  animation-name: show-bars, hide-bars;
+  animation-duration: 0.5s, 0.4s;
+  animation-timing-function: ease-in-out, ease-in;
+  animation-fill-mode: forwards, forwards;
+  animation-delay: calc(0.1s * var(--i)), 1s;
+}
+
+@keyframes hide-bars {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 @keyframes show-bars {
@@ -139,15 +150,19 @@ section {
   width: 100%;
   height: 100%;
   padding: 0 10% 2rem;
+  background: var(--bg-color);
   visibility: hidden;
   opacity: 0;
   overflow: hidden;
+  z-index: 10;
+  pointer-events: none;
 }
 
 section.active {
   visibility: visible;
   opacity: 1;
   overflow: auto;
+  pointer-events: auto;
 }
 
 .home {
@@ -340,13 +355,15 @@ section.active {
 /* main */
 main {
   width: 100%;
+  margin-top: 100vh;
+  background: var(--bg-color);
 }
 
 article {
   max-width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: 50vh 50vh;
+  grid-template-rows: 50vh auto;
 }
 
 article1 .article_img img {
@@ -415,11 +432,48 @@ article img {
   right: 0;
 }
 
+.parallax-wrapper {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+}
+
+.parallax-bg.mountain {
+  position: absolute;
+  inset: 0;
+  background: url('../img/Mountain.png') center center / cover no-repeat;
+  z-index: 1;
+}
+
+.parallax-layer.trees {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: url('../img/Trees.png') bottom center / cover no-repeat;
+  z-index: 2;
+}
+
+.parallax-wrapper .title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  font-size: 6rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-align: center;
+  width: 100%;
+}
+
 .article_info {
   position: sticky;
   z-index: 1;
   place-items: center;
-  height: 80vh;
+  height: auto;
   gap: 0.5rem;
   background: var(--bg-color);
 }
@@ -567,8 +621,8 @@ article img {
 .about_info {
   position: sticky;
   z-index: 1;
-  height: 76vh;
-  padding: 0 10rem;
+  height: auto;
+  padding: 0 10rem 4rem;
   background: var(--bg-color);
 }
 
@@ -642,6 +696,72 @@ article img {
   font-size: 1.6rem;
   line-height: 1.6;
   font-weight: 300;
+}
+
+.contact_info {
+  position: sticky;
+  z-index: 1;
+  height: auto;
+  padding: 0 10rem 4rem;
+  background: var(--bg-color);
+}
+
+.contact_info h2 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 4rem;
+  padding-top: 6rem;
+}
+
+.contact_info .desc {
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+  color: var(--white-color);
+}
+
+.contact_info a {
+  font-size: 1.7rem;
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+.contact_info a:hover {
+  text-decoration: underline;
+}
+
+.contact-row {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.contact-dedtail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  flex: 1;
+  min-width: 18rem;
+  background: var(--second-bg-color);
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
+}
+
+.contact-dedtail i {
+  font-size: 4rem;
+  color: var(--main-color);
+  flex-shrink: 0;
+}
+
+.contact-dedtail .detail h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.contact-dedtail .detail p {
+  font-size: 1.6rem;
+  color: var(--white-color);
 }
 
 /* media query */
