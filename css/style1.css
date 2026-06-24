@@ -283,7 +283,7 @@ section.active {
 
 .home-img .img-box {
   position: relative;
-  width: 300vw;
+  width: 30vw;
   height: 30vw;
   border-radius: 80%;
   box-shadow: 0 0 20px var(--main-color);
