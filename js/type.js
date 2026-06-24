@@ -1,7 +1,7 @@
 var typed=new Typed(".multiple-text",{
-    strings:["Coder","Programmer","Creator","Game Changer"],
+    strings:["Coder","Programmer","Creator"],
     typeSpeed:100,
     backSpeed:100,
-    backDelay:1000,
+    backDelay:3000,
     loop:true
 })
